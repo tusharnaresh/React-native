@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
 const INJECTED_JAVASCRIPT = `(function() {
  const meta = document.createElement('meta'); 
@@ -10,6 +10,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <WebView source={{ uri: 'https://calendar.switchport.app/110' }} style={styles.webview}
+      userAgent={Platform.OS === 'android' ? 'Chrome/18.0.1025.133 Mobile Safari/535.19' : 'AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75'}
       onMessage={(event) => {}}
       injectedJavaScript={INJECTED_JAVASCRIPT} 
       webviewDebuggingEnabled={true}
